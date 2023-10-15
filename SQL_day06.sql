@@ -116,6 +116,11 @@ GROUP BY sehir
 HAVING COUNT(DISTINCT id)>1 
 
 --=====>>>>>!!!!Eğer bir şehirde alınan MAX maas 5000’den düşükse sehir ismini ve MAX maasi veren sorgu yazınız.ÖDEV
+SELECT sehir,MAX(maas)
+FROM personel
+GROUP BY sehir
+HAVING  MAX(maas)<5000;
+
 
 --31-UNION:iki farklı sonucunu birlestirerek görüntülemeyi saglar
 --         tekrar eden veriler var ise bir kere gösterir.
@@ -236,12 +241,22 @@ SELECT id FROM developers WHERE salary>4000
 EXCEPT
 SELECT address_id FROM contact_info 
  
- --ÖDEV:mart ve nisan tablolarındaki tüm ürünlerin isimlerini tekrarsız listeleyiniz.  
+ --ÖDEV:mart ve nisan tablolarındaki tüm ürünlerin isimlerini tekrarsız listeleyiniz.
+ SELECT urun_isim FROM mart 
+ UNION
+ SELECT urun_isim FROM nisan
  --ÖDEV:mart ve nisan tablolarındaki ortak ürünlerin isimlerini listeleyiniz.
+ SELECT urun_isim FROM mart 
+ INTERSECT
+ SELECT urun_isim FROM nisan
  --ÖDEV:mart ayında satılıp nisan ayında satılmayan ürünlerin isimlerini listeleyiniz.
+ SELECT urun_isim FROM mart 
+ EXCEPT
+ SELECT urun_isim FROM nisan
 
 
-
+SELECT * FROM mart
+SELECT * FROM nisan
 
 
 
