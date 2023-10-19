@@ -89,23 +89,41 @@ SELECT *
 FROM teachers
 WHERE salary > (SELECT AVG(salary) FROM teachers) AND firstname = 'Ahmet'  AND lastname = 'Han';
 --9--Yaşı 37 den büyük olan öğretmenlerin yaşını Java dersi alanların yaşlarının minimumu ile güncelleyiniz.
-
+UPDATE teachers 
+SET age = (SELECT MIN(age) FROM teachers WHERE course_name = 'Java')
+WHERE age>37;
 --10--Yaşı 35 den büyük olan öğretmen varsa, bu öğretmenlerin verdiği derslerin isimlerini ve başlangıç tarihlerini listeleyiniz.
-
+SELECT course_name,start_date
+FROM courses c
+WHERE EXISTS (SELECT * FROM teachers t WHERE age>35 AND t.course_name=c.course_name)
 --11--Hiçbir öğretmen tarafından verilmeyen dersleri isim, başlangıç ve bitiş tarihlerini listeleyiniz.
-
+SELECT course_name,start_date,finish_date
+FROM courses c
+WHERE NOT EXISTS (SELECT * FROM teachers t WHERE t.course_name=c.course_name)
 --12--En az bir öğretmen tarafından verilen derslerin ücretlerini 10 artırınız.
-
+UPDATE courses c
+SET course_fee=course_fee+10
+WHERE EXISTS (SELECT * FROM teachers t WHERE t.course_name=c.course_name)
 --13--Ücreti 170 den fazla olan ders varsa bu dersi veren öğretmenlerin tüm bilgilerini listeleyiniz.(IN kullanmayınız.)
-
+SELECT *
+FROM teachers t
+WHERE EXISTS (SELECT * FROM courses c WHERE course_fee>170 and c.course_name=t.course_name)
 --14--Başlangıç tarihi '03-11-2022' olan kursun ismini ' Core' ekleyiniz.
-
+UPDATE courses
+SET course_name=course_name || ' Core'
+WHERE start_date='03-11-2022'
 --15--Maaşı ortalama maaştan yüksek olan öğretmenin şehrini Antalya olarak değiştiriniz.
-
+UPDATE teachers
+SET city='Antalya'
+WHERE salary>(SELECT AVG(salary) FROM teachers)
 --16--Yaşı en küçük olan dersin öğretmeninin maaşını 2 katına çıkarınız.
-
+UPDATE teachers
+SET salary=salary*2
+WHERE age=(SELECT MIN(age) FROM teachers)
 --17--En erken başlayan kursun kredisini 2 arttırınız.
-
+UPDATE courses
+SET credit=credit+2
+WHERE start_date=(SELECT MIN(start_date) FROM courses)
 
 
 

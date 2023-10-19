@@ -122,11 +122,11 @@ SELECT SUM(fiyat) AS toplam_fiyat FROM arac;
  
 --Soru-8: arac tablosundaki fiyat ortalamalarını bulunuz
 SELECT AVG(fiyat) FROM arac;
-select Round(avg(fiyat),2) as Ortalama_Fiyat from arac;
+SELECT Round(avg(fiyat),2) AS Ortalama_Fiyat FROM arac;
  
 --Soru-9:arac tablosunda kaç tane araç olduğunu bulunuz
-select count(id) from arac;	
-select count(*) from arac;
+SELECT COUNT(id) FROM arac;	
+SELECT COUNT(*) FROM arac;
 
  CREATE TABLE meslekler
 (
@@ -201,41 +201,21 @@ insert into aktorler values (5, 'Cem Yilmaz', 5);
 
 --Soru-15 Tüm film_name leri, kategorilerini ve filmlerde oynayan aktor_name leri listeleyin
 SELECT * FROM filmler  AS A  LEFT  JOIN aktorler AS B ON A.film_id=B.film_id;
+
 SELECT * FROM aktorler AS B  RIGHT JOIN filmler  AS A ON A.film_id=B.film_id;
+
 SELECT * FROM aktorler AS B  JOIN  filmler       AS A ON A.film_id=B.film_id;
 --Soru-16: tüm actor_name leri ve oynadigi film name leri listeleyiniz.ODEVVV..
+SELECT actor_name,film_name 
+FROM aktorler AS A
+LEFT JOIN filmler AS B ON A.film_id=B.film_id;
 
+-- 2. yol :
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT actor_name,film_name 
+FROM filmler AS B
+RIGHT JOIN aktorler AS A
+ON A.film_id=B.film_id;
 
 
 

@@ -12,7 +12,7 @@ INSERT INTO sirketler VALUES(100, 'IBM');
 INSERT INTO sirketler VALUES(101, 'GOOGLE');
 INSERT INTO sirketler VALUES(102, 'MICROSOFT');
 INSERT INTO sirketler VALUES(103, 'APPLE');
- 
+SELECT * FROM sirketler 
 CREATE TABLE siparis(
 siparis_id int,
 sirket_id int,
@@ -276,7 +276,38 @@ SELECT *
 FROM words
 WHERE word !~* '^h'
  
---2. harfi e,i veya o olmayan kelimelerin tum bilgilerini yazdiran QUERY yazin.ÖDE
+--2. harfi e,i veya o olmayan kelimelerin tum bilgilerini yazdiran QUERY yazin.ÖDEV
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
